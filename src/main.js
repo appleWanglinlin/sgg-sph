@@ -10,6 +10,12 @@ Vue.filter('formatTime', function(time, str = 'YYYY-MM-DD HH:mm:ss') {
   return dayjs(time).format(str)
 })
 
+Vue.directive('focus', {
+  inserted(el, binding) {
+    el.focus()
+  }
+})
+
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
