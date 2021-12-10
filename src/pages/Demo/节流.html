@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+  <script src="./lodash.js"></script>
+</head>
+<body>
+  <button id="btn">累加</button>
+  <span id='span'></span>
+</body>
+<script>
+  // 在规定的时间后触发，把频繁触发变为少量触发
+  let count = 0
+  const btn = document.getElementById('btn')
+  const span = document.getElementById('span')
+  btn.onclick = _.throttle(function() {
+    count++
+    span.innerHTML = count
+  }, 1000)
+</script>
+</html>
