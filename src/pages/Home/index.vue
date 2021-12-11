@@ -31,6 +31,8 @@ export default {
   mounted() {
    
   },
+  updated() {
+  },
   methods: {
     // ES6写法-默认写法
     // handleInput(){
