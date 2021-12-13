@@ -5,13 +5,15 @@ import store from '@/store'
 import '@/mock/mockServer'
 // import * as dayjs from 'dayjs'
 import * as dayjs from '/public/dayjs.min.js'
+import xss from 'xss'
+Vue.prototype.xss = xss
 
 Vue.filter('formatTime', function(time, str = 'YYYY-MM-DD HH:mm:ss') {
   return dayjs(time).format(str)
 })
 
 Vue.directive('focus', {
-  inserted(el, binding) {
+  inserted(el) {
     el.focus()
   }
 })
